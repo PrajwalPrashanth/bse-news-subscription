@@ -1,0 +1,48 @@
+name: twtsub
+channels:
+  - defaults
+dependencies:
+  - _libgcc_mutex=0.1=main
+  - appdirs=1.4.4=py_0
+  - astroid=2.5=py38h06a4308_1
+  - attrs=20.3.0=pyhd3eb1b0_0
+  - autopep8=1.5.6=pyhd3eb1b0_0
+  - black=19.10b0=py_0
+  - ca-certificates=2021.1.19=h06a4308_1
+  - certifi=2020.12.5=py38h06a4308_0
+  - click=7.1.2=pyhd3eb1b0_0
+  - isort=5.8.0=pyhd3eb1b0_0
+  - lazy-object-proxy=1.6.0=py38h27cfd23_0
+  - ld_impl_linux-64=2.33.1=h53a641e_7
+  - libffi=3.3=he6710b0_2
+  - libgcc-ng=9.1.0=hdf63c60_0
+  - libstdcxx-ng=9.1.0=hdf63c60_0
+  - mccabe=0.6.1=py38_1
+  - mypy_extensions=0.4.3=py38_0
+  - ncurses=6.2=he6710b0_1
+  - openssl=1.1.1k=h27cfd23_0
+  - pathspec=0.7.0=py_0
+  - pip=21.0.1=py38h06a4308_0
+  - pycodestyle=2.7.0=pyhd3eb1b0_0
+  - pylint=2.7.4=py38h06a4308_1
+  - python=3.8.8=hdb3f193_4
+  - readline=8.1=h27cfd23_0
+  - regex=2021.4.4=py38h27cfd23_0
+  - setuptools=52.0.0=py38h06a4308_0
+  - six=1.15.0=py38h06a4308_0
+  - sqlite=3.35.4=hdfb4753_0
+  - tk=8.6.10=hbc83047_0
+  - toml=0.10.2=pyhd3eb1b0_0
+  - typed-ast=1.4.2=py38h27cfd23_1
+  - typing_extensions=3.7.4.3=pyha847dfd_0
+  - tzdata=2020f=h52ac0ba_0
+  - wheel=0.36.2=pyhd3eb1b0_0
+  - wrapt=1.12.1=py38h7b6447c_1
+  - xz=5.2.5=h7b6447c_0
+  - zlib=1.2.11=h7b6447c_3
+  - pip:
+    - chardet==4.0.0
+    - idna==2.10
+    - requests==2.25.1
+    - urllib3==1.26.4
+
