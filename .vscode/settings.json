@@ -1,0 +1,12 @@
+{
+  "editor.rulers": [120],
+  "python.formatting.autopep8Args": [
+    "--max-line-length",
+    "120",
+    "--experimental"
+  ],
+  "editor.formatOnSave": true,
+  "python.formatting.provider": "autopep8",
+  "editor.defaultFormatter": "ms-python.python",
+  "python.linting.pylintEnabled": true
+}
