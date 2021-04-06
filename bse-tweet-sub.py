@@ -33,7 +33,7 @@ def delete_all_rules(rules=get_rules()):
 
 
 def set_rules():
-    bse_rules = [{"value": "dogs", "tag": "bse news"}]
+    bse_rules = [{"value": "from:BSE_news", "tag": "bse news"}]
     payload = {"add": bse_rules}
     response = requests.post(TWITTER_STREAM_API["RULES"], headers=headers, json=payload)
     if response.status_code != 201:
