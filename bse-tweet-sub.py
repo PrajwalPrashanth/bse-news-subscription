@@ -64,7 +64,7 @@ def get_payload(data):
     }
     tweet_body = {
         "type": "section",
-        "text": {"type": "mrkdwn", "text": f'*Tweet:* {data.get("text")}'},
+        "text": {"type": "mrkdwn", "text": f'*Tweet:* {data.get("text")}\n------------------------------------------'},
     }
     payload = {"blocks": [tweet_at, tweet_body]}
     return json.dumps(payload)
