@@ -4,6 +4,7 @@ import os
 import requests
 
 BSE_NEWS_HOOK = os.getenv("BSE_NEWS_HOOK")
+BSE_NEWS_IMPORTANT_HOOK = os.getenv("BSE_NEWS_IMPORTANT_HOOK")
 bearer_token = os.getenv("TWITTER_BEARER_TOKEN")
 headers = {"Authorization": f"Bearer {bearer_token}"}
 TWITTER_STREAM_API = {
@@ -33,7 +34,7 @@ def delete_all_rules(rules=get_rules()):
 
 
 def set_rules():
-    bse_rules = [{"value": "from:BSE_news", "tag": "bse news"}]
+    bse_rules = [{"value": "from:BSE_news", "tag": "bse news"}, {"value": "from:praj_22", "tag": "my test"}]
     payload = {"add": bse_rules}
     response = requests.post(TWITTER_STREAM_API["RULES"], headers=headers, json=payload)
     if response.status_code != 201:
@@ -47,6 +48,10 @@ def get_stream():
                                 "media.fields": "url",
                                 "tweet.fields": "created_at,entities"
     })
+    
+    if response.status_code == 429:
+        print("Rate limit error")
+        raise Exception(response.headers)
 
     if response.status_code != 200:
         raise Exception(f"Cannot get stream (HTTP {response.status_code}): {response.text}")
@@ -54,7 +59,16 @@ def get_stream():
     for response_line in response.iter_lines():
         if response_line:
             json_response = json.loads(response_line)
-            send_slack_msg(json_response.get('data'))
+            data = json_response.get('data')
+            send_slack_msg(BSE_NEWS_HOOK, data)
+            text = str(data.get('text'))
+            try: 
+                if text:
+                    for i in ["results", "stock split", "bonus", "dividend"]:
+                        if text.lower().__contains__(i):
+                            send_slack_msg(BSE_NEWS_IMPORTANT_HOOK, data)
+            except Exception as e:
+                print("Error:", e, data)
 
 
 def get_payload(data):
@@ -70,9 +84,9 @@ def get_payload(data):
     return json.dumps(payload)
 
 
-def send_slack_msg(data):
+def send_slack_msg(url, data):
     requests.post(
-        url=BSE_NEWS_HOOK,
+        url=url,
         headers={"Content-type": "application/json"},
         data=get_payload(data),
     )
